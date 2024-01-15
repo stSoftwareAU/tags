@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { TagAndRelease } from "../src/TagAndReleaseApp.ts";
+import { TagAndRelease } from "../src/TagAndRelease.ts";
 import { getTag } from "../src/TagsInterface.ts";
 
 Deno.test("TagDirectory", async () => {
