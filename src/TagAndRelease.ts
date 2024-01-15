@@ -1,10 +1,10 @@
-import { parseArgs } from "https://deno.land/std@0.212.0/cli/parse_args.ts";
 import { addTag } from "./TagsInterface.ts";
 
 interface TagAndReleaseOptions {
   directory: string;
   tagList: string;
 }
+
 export class TagAndRelease {
   process(options: TagAndReleaseOptions) {
     for (const dirEntry of Deno.readDirSync(options.directory)) {
