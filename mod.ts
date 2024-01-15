@@ -4,4 +4,4 @@
  * @module
  */
 
-export { addTag, getTag, removeTag } from "./src/tags/TagsInterface.ts";
+export { addTag, getTag, removeTag } from "./src/TagsInterface.ts";
