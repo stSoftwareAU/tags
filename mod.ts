@@ -5,3 +5,4 @@
  */
 
 export { addTag, getTag, removeTag } from "./src/TagsInterface.ts";
+export { TagAndRelease } from "./src/TagAndRelease.ts";

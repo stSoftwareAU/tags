@@ -26,14 +26,3 @@ export class TagAndRelease {
     }
   }
 }
-
-const args = parseArgs(Deno.args);
-
-if (args.directory) {
-  const tagAndRelease = new TagAndRelease();
-
-  tagAndRelease.process({
-    directory: args.directory,
-    tagList: args.tagList,
-  });
-}
