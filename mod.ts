@@ -5,4 +5,5 @@
  */
 
 export { addTag, getTag, removeTag } from "./src/TagsInterface.ts";
+export type { TagsInterface } from "./src/TagsInterface.ts";
 export { TagAndRelease } from "./src/TagAndRelease.ts";
