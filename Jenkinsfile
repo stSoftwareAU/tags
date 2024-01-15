@@ -34,7 +34,7 @@ pipeline {
 
                           deno lint src
 
-                          # deno fmt --check src test
+                          deno fmt --check src test
                         '''.stripIndent()
                     }
                 }
