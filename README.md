@@ -1,2 +1,2 @@
-# tags
+# Tags
 Tags for TS.
