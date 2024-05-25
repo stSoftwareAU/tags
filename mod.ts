@@ -1,9 +1,24 @@
 /**
+ * @module
+ *
  * Helpers for working with TAGS
  *
  * This module provides various utilities and classes to facilitate the addition, removal, and management of tags in JSON objects.
  *
- * @module
+ * @example
+ * ```ts
+ * import { addTag, removeTag,type TagsInterface } from "./mod.ts";
+ *
+ * const taggable: TagsInterface = { tags: undefined };
+ *
+ * assert(getTag(taggable, "hello") == null, "should not have tags yet");
+ *
+ * addTag(taggable, "hello", "world");
+ * assert(getTag(taggable, "hello") == "world", "Expecting a value.");
+ * const v = removeTag(taggable, "hello");
+ * assert(v == "world", "should have removed world was: " + v);
+ * assert(getTag(taggable, "hello") == null, "should no longer have tags");
+ * ```
  */
 
 /**
