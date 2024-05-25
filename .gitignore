@@ -3,4 +3,5 @@
 *~
 logback.log
 !.gitignore
+!.github
 deno.lock
