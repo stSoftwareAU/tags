@@ -3,7 +3,7 @@ import {
   addTags,
   getTag,
   removeTag,
-  TagsInterface,
+  type TagsInterface,
 } from "../src/TagsInterface.ts";
 
 import {

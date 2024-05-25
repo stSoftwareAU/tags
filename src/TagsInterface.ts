@@ -1,4 +1,4 @@
-import { TagInterface } from "./TagInterface.ts";
+import type { TagInterface } from "./TagInterface.ts";
 
 export interface TagsInterface {
   tags?: TagInterface[];
@@ -13,7 +13,11 @@ export function addTags(target: TagsInterface, source: TagsInterface) {
   }
 }
 
-export function addTag(taggable: TagsInterface, name: string, value: string) {
+export function addTag(
+  taggable: TagsInterface,
+  name: string,
+  value: string,
+): string | null {
   let tags = taggable.tags;
   if (!tags) {
     tags = [];
@@ -36,7 +40,10 @@ export function addTag(taggable: TagsInterface, name: string, value: string) {
   return null;
 }
 
-export function removeTag(taggable: TagsInterface, name: string) {
+export function removeTag(
+  taggable: TagsInterface,
+  name: string,
+): string | null {
   const tags = taggable.tags;
 
   if (!tags) return null;
@@ -53,7 +60,7 @@ export function removeTag(taggable: TagsInterface, name: string) {
   return previousTag.value;
 }
 
-export function getTag(taggable: TagsInterface, name: string) {
+export function getTag(taggable: TagsInterface, name: string): string | null {
   const tags = taggable.tags;
 
   if (!tags) return null;
