@@ -1,10 +1,42 @@
 /**
  * Helpers for working with TAGS
  *
+ * This module provides various utilities and classes to facilitate the addition, removal, and management of tags in JSON objects.
+ *
  * @module
  */
 
+/**
+ * Class to process JSON files in a directory and add tags to each JSON object.
+ *
+ * @class
+ */
 export { TagAndRelease } from "./src/TagAndRelease.ts";
+
+/**
+ * Interface defining the structure of a tag.
+ *
+ * @typedef {Object} TagInterface
+ * @property {string} name - The name of the tag.
+ * @property {string} value - The value of the tag.
+ */
 export type { TagInterface } from "./src/TagInterface.ts";
+
+/**
+ * Function to add a tag to a taggable entity.
+ *
+ * @function
+ * @param {TagsInterface} taggable - The entity to which the tag will be added.
+ * @param {string} name - The name of the tag.
+ * @param {string} value - The value of the tag.
+ * @returns {string | null} The previous value of the tag if it was updated, or null if it was added.
+ */
 export { addTag, addTags, getTag, removeTag } from "./src/TagsInterface.ts";
+
+/**
+ * Interface defining an entity that can have tags.
+ *
+ * @typedef {Object} TagsInterface
+ * @property {TagInterface[]} [tags] - Array of tags associated with the entity.
+ */
 export type { TagsInterface } from "./src/TagsInterface.ts";
