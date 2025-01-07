@@ -16,7 +16,7 @@ export interface TagsInterface {
  */
 export function addTags(target: TagsInterface, source: TagsInterface): void {
   if (source.tags) {
-    for (let i=0; i < source.tags.length; i++) {
+    for (let i = 0; i < source.tags.length; i++) {
       const tag = source.tags[i];
       addTag(target, tag.name, tag.value);
     }
