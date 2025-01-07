@@ -1,0 +1,75 @@
+name: Format Code Automatically with Deno 2
+
+on:
+  push:
+    branches-ignore:
+      - Develop
+  workflow_dispatch: # Allow manual trigger if needed
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACTIONS_PUSH }} # Use the GitHub Actions token for write access
+
+      # Set up Deno 2.x
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+
+      - name: Update Deno
+        run: deno outdated --update --latest
+
+      # Run Deno fmt
+      - name: Format Code
+        run: deno fmt
+
+      - name: Lint Code
+        run: deno lint --fix src test bench mod.ts
+
+      - name: Check
+        run: |
+          find src -name "*.ts" -print0 | xargs -0 -n 50 deno check
+          find test -name "*.ts" -print0 | xargs -0 -n 50 deno check
+          find bench -name "*.ts" -print0 | xargs -0 -n 50 deno check
+
+      - name: Test
+        run: deno test --unstable --coverage=cov src test bench
+      - name: Coverage
+        run: deno coverage --unstable --lcov > coverage.lcov
+
+      - name: "Upload Coverage"
+        uses: codecov/codecov-action@v2
+        with:
+          # token: ${{ secrets.ACTIONS_PUSH }}
+          file: ./coverage.lcov
+
+      # Check for Changes
+
+      # Check for Changes
+      - name: Check for Changes
+        id: check_changes # Define step ID to use outputs
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      # Commit Changes
+      - name: Commit Changes
+        if: steps.check_changes.outputs.has_changes == 'true' # Use step output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: apply deno fmt and lint fixes"
+
+      # Push Changes
+      - name: Push Changes
+        if: steps.check_changes.outputs.has_changes == 'true' # Use step output
+        run: |
+          git push origin

@@ -19,26 +19,6 @@ pipeline {
 
     stages {
         stage('Checks') {
-            parallel {
-                stage('Lint & Format') {
-                    agent {
-                        docker {
-                            image DENO_IMAGE
-                            args TOOLS_ARGS
-                            label 'small'
-                        }
-                    }
-                    steps {
-                        sh '''\
-                          #!/bin/bash
-
-                          deno lint src
-
-                          deno fmt --check src test
-                        '''.stripIndent()
-                    }
-                }
-
                 stage('Test') {
                     agent {
                         docker {
@@ -62,7 +42,6 @@ pipeline {
                         }
                     }
                 }
-            }
         }
 
         stage('Coverage') {
