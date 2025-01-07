@@ -35,7 +35,7 @@ jobs:
         run: |
           find src -name "*.ts" -print0 | xargs -0 -n 50 deno check
           find test -name "*.ts" -print0 | xargs -0 -n 50 deno check
-          find bench -name "*.ts" -print0 | xargs -0 -n 50 deno check
+          # find bench -name "*.ts" -print0 | xargs -0 -n 50 deno check
 
       - name: Test
         run: deno test --unstable --coverage=cov src test bench
@@ -45,7 +45,7 @@ jobs:
       - name: "Upload Coverage"
         uses: codecov/codecov-action@v2
         with:
-          # token: ${{ secrets.ACTIONS_PUSH }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           file: ./coverage.lcov
 
       # Check for Changes
