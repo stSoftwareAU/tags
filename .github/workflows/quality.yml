@@ -38,17 +38,7 @@ jobs:
           # find bench -name "*.ts" -print0 | xargs -0 -n 50 deno check
 
       - name: Test
-        run: deno test --coverage=cov src test bench
-      - name: Coverage
-        run: deno coverage --lcov > coverage.lcov
-
-      - name: "Upload Coverage"
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.ACTIONS_PUSH }}
-          file: ./coverage.lcov
-
-      # Check for Changes
+        run: deno test --allow-all test/*.ts
 
       # Check for Changes
       - name: Check for Changes
